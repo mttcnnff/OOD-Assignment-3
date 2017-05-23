@@ -100,7 +100,7 @@ public class FreecellModel implements FreecellOperations<Card> {
 
     if (!this.piles.get(source).move(pileNumber, cardIndex, this.piles.get(destination),
             destPileNumber)) {
-      throw new IllegalArgumentException("Invalid move.");
+      throw new IllegalArgumentException("Move not allowed.");
     }
 
   }
