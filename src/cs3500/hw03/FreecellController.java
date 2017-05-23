@@ -16,13 +16,13 @@ import cs3500.hw02.card.Card;
  */
 public class FreecellController implements IFreecellController<Card> {
 
-  Readable in;
-  Appendable out;
-  boolean quit;
-  Scanner scan;
-  PileInput sourcePileEntry;
-  CardIndexInput cardIndexEntry;
-  PileInput destPileEntry;
+  private Readable in;
+  private Appendable out;
+  private boolean quit;
+  private Scanner scan;
+  private PileInput sourcePileEntry;
+  private CardIndexInput cardIndexEntry;
+  private PileInput destPileEntry;
 
   /**
    * Constructor for FreecellController.
