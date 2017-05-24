@@ -35,9 +35,9 @@ public class FreecellModel implements FreecellOperations<Card> {
   public List<Card> getDeck() {
     ArrayList<Card> cards = new ArrayList<>();
 
-    for (int i = 0; i < 4; i++) {
-      for (int j = 0; j < 13; j++) {
-        cards.add(new Card(CardValue.values()[j], CardSuit.values()[i]));
+    for (int i = 12; i >= 0; i--) {
+      for (int j = 3; j >= 0; j--) {
+        cards.add(new Card(CardValue.values()[i], CardSuit.values()[j]));
       }
     }
 
