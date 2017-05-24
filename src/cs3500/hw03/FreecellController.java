@@ -1,15 +1,13 @@
 package cs3500.hw03;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import cs3500.hw02.FreecellModel;
 import cs3500.hw02.FreecellOperations;
-import cs3500.hw02.PileType;
 import cs3500.hw02.card.Card;
+import cs3500.hw03.input.CardIndexInput;
+import cs3500.hw03.input.PileInput;
 
 /**
  * Created by Matt on 5/21/17.

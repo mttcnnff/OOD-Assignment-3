@@ -1,4 +1,4 @@
-package cs3500.hw03;
+package cs3500.hw03.input;
 
 import cs3500.hw02.PileType;
 

@@ -142,28 +142,25 @@ public class FreecellModelTests {
   @Test
   public void testMove7() {
     this.testGame.startGame(this.deck, 8, 4, false);
-    this.testGame.move(PileType.CASCADE, 7, 5, PileType.OPEN, 0);
-    this.testGame.move(PileType.CASCADE, 7, 4, PileType.FOUNDATION, 0);
-    this.testGame.move(PileType.CASCADE, 0, 6, PileType.OPEN, 1);
-    this.testGame.move(PileType.CASCADE, 1, 6, PileType.OPEN, 3);
+    this.testGame.move(PileType.CASCADE, 0, 6, PileType.FOUNDATION, 0);
+    this.testGame.move(PileType.CASCADE, 4, 5, PileType.FOUNDATION, 0);
     this.testGame.move(PileType.CASCADE, 0, 5, PileType.FOUNDATION, 0);
-    this.testGame.move(PileType.CASCADE, 1, 5, PileType.FOUNDATION, 0);
     assertEquals("F1: A♣, 2♣, 3♣\n" +
             "F2:\n" +
             "F3:\n" +
             "F4:\n" +
-            "O1: 9♣\n" +
-            "O2: 10♣\n" +
+            "O1:\n" +
+            "O2:\n" +
             "O3:\n" +
-            "O4: J♣\n" +
-            "C1: A♥, 9♥, 4♦, Q♦, 7♠\n" +
-            "C2: 2♥, 10♥, 5♦, K♦, 8♠\n" +
-            "C3: 3♥, J♥, 6♦, A♠, 9♠, 4♣, Q♣\n" +
-            "C4: 4♥, Q♥, 7♦, 2♠, 10♠, 5♣, K♣\n" +
-            "C5: 5♥, K♥, 8♦, 3♠, J♠, 6♣\n" +
-            "C6: 6♥, A♦, 9♦, 4♠, Q♠, 7♣\n" +
-            "C7: 7♥, 2♦, 10♦, 5♠, K♠, 8♣\n" +
-            "C8: 8♥, 3♦, J♦, 6♠", this.testGame.getGameState());
+            "O4:\n" +
+            "C1: K♣, J♣, 9♣, 7♣, 5♣\n" +
+            "C2: K♠, J♠, 9♠, 7♠, 5♠, 3♠, A♠\n" +
+            "C3: K♦, J♦, 9♦, 7♦, 5♦, 3♦, A♦\n" +
+            "C4: K♥, J♥, 9♥, 7♥, 5♥, 3♥, A♥\n" +
+            "C5: Q♣, 10♣, 8♣, 6♣, 4♣\n" +
+            "C6: Q♠, 10♠, 8♠, 6♠, 4♠, 2♠\n" +
+            "C7: Q♦, 10♦, 8♦, 6♦, 4♦, 2♦\n" +
+            "C8: Q♥, 10♥, 8♥, 6♥, 4♥, 2♥", this.testGame.getGameState());
   }
 
   /*tests invalid move when trying to put card that isn't ace
@@ -172,7 +169,7 @@ public class FreecellModelTests {
   @Test(expected = IllegalArgumentException.class)
   public void testMove8() {
     this.testGame.startGame(this.deck, 8, 4, false);
-    this.testGame.move(PileType.CASCADE, 0, 6, PileType.FOUNDATION, 0);
+    this.testGame.move(PileType.CASCADE, 4, 6, PileType.FOUNDATION, 0);
   }
 
   /*tests invalid move when trying to put card of value not greater than 1
@@ -248,31 +245,31 @@ public class FreecellModelTests {
             "O2:\n" +
             "O3:\n" +
             "O4:\n" +
-            "C1: A♥, 9♥, 4♦, Q♦, 7♠, 2♣, 10♣\n" +
-            "C2: 2♥, 10♥, 5♦, K♦, 8♠, 3♣, J♣\n" +
-            "C3: 3♥, J♥, 6♦, A♠, 9♠, 4♣, Q♣\n" +
-            "C4: 4♥, Q♥, 7♦, 2♠, 10♠, 5♣, K♣\n" +
-            "C5: 5♥, K♥, 8♦, 3♠, J♠, 6♣\n" +
-            "C6: 6♥, A♦, 9♦, 4♠, Q♠, 7♣\n" +
-            "C7: 7♥, 2♦, 10♦, 5♠, K♠, 8♣\n" +
-            "C8: 8♥, 3♦, J♦, 6♠, A♣, 9♣", this.testGame.getGameState());
+            "C1: K♣, J♣, 9♣, 7♣, 5♣, 3♣, A♣\n" +
+            "C2: K♠, J♠, 9♠, 7♠, 5♠, 3♠, A♠\n" +
+            "C3: K♦, J♦, 9♦, 7♦, 5♦, 3♦, A♦\n" +
+            "C4: K♥, J♥, 9♥, 7♥, 5♥, 3♥, A♥\n" +
+            "C5: Q♣, 10♣, 8♣, 6♣, 4♣, 2♣\n" +
+            "C6: Q♠, 10♠, 8♠, 6♠, 4♠, 2♠\n" +
+            "C7: Q♦, 10♦, 8♦, 6♦, 4♦, 2♦\n" +
+            "C8: Q♥, 10♥, 8♥, 6♥, 4♥, 2♥", this.testGame.getGameState());
     this.testGame.move(PileType.CASCADE, 0, 6, PileType.OPEN, 0);
     assertEquals("F1:\n" +
             "F2:\n" +
             "F3:\n" +
             "F4:\n" +
-            "O1: 10♣\n" +
+            "O1: A♣\n" +
             "O2:\n" +
             "O3:\n" +
             "O4:\n" +
-            "C1: A♥, 9♥, 4♦, Q♦, 7♠, 2♣\n" +
-            "C2: 2♥, 10♥, 5♦, K♦, 8♠, 3♣, J♣\n" +
-            "C3: 3♥, J♥, 6♦, A♠, 9♠, 4♣, Q♣\n" +
-            "C4: 4♥, Q♥, 7♦, 2♠, 10♠, 5♣, K♣\n" +
-            "C5: 5♥, K♥, 8♦, 3♠, J♠, 6♣\n" +
-            "C6: 6♥, A♦, 9♦, 4♠, Q♠, 7♣\n" +
-            "C7: 7♥, 2♦, 10♦, 5♠, K♠, 8♣\n" +
-            "C8: 8♥, 3♦, J♦, 6♠, A♣, 9♣", this.testGame.getGameState());
+            "C1: K♣, J♣, 9♣, 7♣, 5♣, 3♣\n" +
+            "C2: K♠, J♠, 9♠, 7♠, 5♠, 3♠, A♠\n" +
+            "C3: K♦, J♦, 9♦, 7♦, 5♦, 3♦, A♦\n" +
+            "C4: K♥, J♥, 9♥, 7♥, 5♥, 3♥, A♥\n" +
+            "C5: Q♣, 10♣, 8♣, 6♣, 4♣, 2♣\n" +
+            "C6: Q♠, 10♠, 8♠, 6♠, 4♠, 2♠\n" +
+            "C7: Q♦, 10♦, 8♦, 6♦, 4♦, 2♦\n" +
+            "C8: Q♥, 10♥, 8♥, 6♥, 4♥, 2♥", this.testGame.getGameState());
 
   }
 

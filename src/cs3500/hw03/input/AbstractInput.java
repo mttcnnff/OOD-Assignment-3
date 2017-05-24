@@ -1,4 +1,4 @@
-package cs3500.hw03;
+package cs3500.hw03.input;
 
 /**
  * Created by Matt on 5/23/17.
