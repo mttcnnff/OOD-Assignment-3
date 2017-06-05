@@ -1,6 +1,5 @@
 package cs3500.hw03;
 
-import java.io.IOException;
 import java.util.List;
 
 import cs3500.hw02.FreecellOperations;
@@ -22,25 +21,23 @@ public interface IFreecellController<K> {
    * 1. Transmit game state to the Appendable object exactly as the model provides it.
    * 2. If game is ongoing, wait for user input from the Readable object.
    * <br>
-   *   i. The source pile (e.g., "C1", as a single word). The pile number begins at 1, so that it is
-   *   more human-friendly.
-   *   ii. The card index, again with the index beginning at 1.
-   *   iii. The destination pile (e.g., "F2", as a single word). The pile number is again counted
-   *   from 1.
+   * i. The source pile (e.g., "C1", as a single word). The pile number begins at 1, so that it is
+   * more human-friendly.
+   * ii. The card index, again with the index beginning at 1.
+   * iii. The destination pile (e.g., "F2", as a single word). The pile number is again counted
+   * from 1.
    * <br>
    * 3. If the game has been won, the method should transmit the final game state, and a message
    * "Game over." on a new line and return.
    *
-   *
-   *
-   * @param deck deck provided to make game with.
-   * @param model model provided to run game.
+   * @param deck        deck provided to make game with.
+   * @param model       model provided to run game.
    * @param numCascades number of cascade piles in this game.
-   * @param numOpens number of open piles in this game.
-   * @param shuffle boolean indicating whether to shuffle deck or not.
-   * @throws IllegalStateException thrown only if the controller has not been initialized
-   * properly to receive input and transmit output.
+   * @param numOpens    number of open piles in this game.
+   * @param shuffle     boolean indicating whether to shuffle deck or not.
+   * @throws IllegalStateException thrown only if the controller has not been initialized properly
+   *                               to receive input and transmit output.
    */
   void playGame(List<K> deck, FreecellOperations<K> model, int numCascades, int numOpens,
-                       boolean shuffle) throws IllegalStateException, IllegalArgumentException, IOException;
+                boolean shuffle) throws IllegalStateException, IllegalArgumentException;
 }

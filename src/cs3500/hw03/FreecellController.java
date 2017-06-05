@@ -17,7 +17,6 @@ public class FreecellController implements IFreecellController<Card> {
   private Readable in;
   private Appendable out;
   private boolean quit;
-  private Scanner scan;
   private PileInput sourcePileEntry;
   private CardIndexInput cardIndexEntry;
   private PileInput destPileEntry;
@@ -28,11 +27,16 @@ public class FreecellController implements IFreecellController<Card> {
    * @param rd Readable object used to read integers and Strings.
    * @param ap Appendable object used to transmit String.
    */
-  public FreecellController(Readable rd, Appendable ap) {
+  public FreecellController(Readable rd, Appendable ap) throws IllegalStateException {
+    //    if (rd == null) {
+    //      throw new IllegalStateException("Readable not initialized properly!");
+    //    }
+    //    if (ap == null) {
+    //      throw new IllegalStateException("Appendable not initialized properly!");
+    //    }
     this.in = rd;
     this.out = ap;
     this.quit = false;
-    this.scan = new Scanner(this.in);
     this.sourcePileEntry = new PileInput();
     this.cardIndexEntry = new CardIndexInput();
     this.destPileEntry = new PileInput();
@@ -68,84 +72,128 @@ public class FreecellController implements IFreecellController<Card> {
   @Override
   public void playGame(List<Card> deck, FreecellOperations<Card> model, int numCascades,
                        int numOpens, boolean shuffle) throws IllegalStateException,
-          IllegalArgumentException, IOException {
+          IllegalArgumentException {
 
-    if(this.in == null) {
+    if (this.in == null) {
       throw new IllegalStateException("Readable not initialized.");
     }
 
-    if(this.out == null) {
+    if (this.out == null) {
       throw new IllegalStateException("Appendable not initialized.");
     }
 
-    if(deck == null) {
+    if (deck == null) {
       throw new IllegalArgumentException("Deck is null!");
     }
 
-    if(model == null) {
+    if (model == null) {
       throw new IllegalArgumentException("Model is null!");
     }
+
+    //Set up scanner for parsing
+    Scanner scan = new Scanner(this.in);
 
     //start game
     try {
       model.startGame(deck, numCascades, numOpens, shuffle);
-    } catch (IllegalArgumentException e){
-      out.append("\nCould not start game.");
+    } catch (IllegalArgumentException e) {
+      sendOutput(this.out, "Could not start game.");
       return;
     }
 
     //run game
     while (!this.quit && !model.isGameOver()) {
-        this.out.append(model.getGameState());
+      sendOutput(this.out, model.getGameState());
 
+      if (scan.hasNext()) {
         this.sourcePileEntry.read(scan.next());
-        if(this.sourcePileEntry.quitCheck()) {
+        if (this.sourcePileEntry.quitCheck()) {
           this.quit = true;
           break;
         }
-        while(!this.sourcePileEntry.isValid()) {
-          this.out.append("Enter Source Pile Again: ");
+        while (!this.sourcePileEntry.isValid()) {
+          sendOutput(this.out, "Enter Source Pile Again: ");
           this.sourcePileEntry.read(scan.next());
+          if (this.sourcePileEntry.quitCheck()) {
+            this.quit = true;
+            break;
+          }
         }
+      }
 
+      if (this.quit) {
+        break;
+      }
+
+      if (scan.hasNext()) {
         this.cardIndexEntry.read(scan.next());
-        if(this.cardIndexEntry.quitCheck()) {
+        if (this.cardIndexEntry.quitCheck()) {
           this.quit = true;
           break;
         }
-        while(!this.cardIndexEntry.isValid()) {
-          this.out.append("Enter Card Index Again: ");
+        while (!this.cardIndexEntry.isValid()) {
+          sendOutput(this.out, "Enter Card Index Again: ");
           this.cardIndexEntry.read(scan.next());
+          if (this.cardIndexEntry.quitCheck()) {
+            this.quit = true;
+            break;
+          }
         }
+      }
 
+      if (this.quit) {
+        break;
+      }
+
+      if (scan.hasNext()) {
         this.destPileEntry.read(scan.next());
-        if(this.destPileEntry.quitCheck()) {
+        if (this.destPileEntry.quitCheck()) {
           this.quit = true;
           break;
         }
-        while(!this.destPileEntry.isValid()) {
-          this.out.append("Enter Destination Pile Again:");
+        while (!this.destPileEntry.isValid()) {
+          sendOutput(this.out, "Enter Destination Pile Again:");
           this.destPileEntry.read(scan.next());
+          if (this.destPileEntry.quitCheck()) {
+            this.quit = true;
+            break;
+          }
         }
+      }
 
-        try {
-          model.move(this.sourcePileEntry.getPileType(),
-                  this.sourcePileEntry.getPileNumber()-1,
-                  this.cardIndexEntry.getCardIndex()-1,
-                  this.destPileEntry.getPileType(),
-                  this.destPileEntry.getPileNumber()-1);
-        } catch (IllegalArgumentException e) {
-          this.out.append("\nInvalid Move. Try Again.: " + e.getMessage() + "\n");
-        }
+      if (this.quit) {
+        break;
+      }
+
+      try {
+        model.move(this.sourcePileEntry.getPileType(),
+                this.sourcePileEntry.getPileNumber() - 1,
+                this.cardIndexEntry.getCardIndex() - 1,
+                this.destPileEntry.getPileType(),
+                this.destPileEntry.getPileNumber() - 1);
+      } catch (IllegalArgumentException e) {
+        sendOutput(this.out, "\nInvalid Move. Try Again.: " + e.getMessage() + "\n");
+      }
     }
     if (this.quit) {
-      this.out.append("\nGame quit prematurely.");
+      sendOutput(this.out, "\nGame quit prematurely.");
       return;
     }
     if (model.isGameOver()) {
-      this.out.append("\nGame over.");
+      sendOutput(this.out, model.getGameState());
+      sendOutput(this.out, "\nGame over.");
       return;
     }
 
   }
+
+  private void sendOutput(Appendable ap, String msg) {
+    try {
+      ap.append(msg);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
 }
+

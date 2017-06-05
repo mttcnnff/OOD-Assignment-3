@@ -1,4 +1,4 @@
-/**
+package hw02; /**
  * Created by Matt on 5/19/17.
  */
 

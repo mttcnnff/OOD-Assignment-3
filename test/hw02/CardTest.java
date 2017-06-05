@@ -1,3 +1,5 @@
+package hw02;
+
 import cs3500.hw02.card.Card;
 import cs3500.hw02.card.CardSuit;
 import cs3500.hw02.card.CardValue;

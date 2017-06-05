@@ -11,14 +11,14 @@ public class CardIndexInput extends AbstractInput {
 
   @Override
   public boolean isValid() {
-    String pattern ="\\d+";
-    if (this.move.matches(pattern)) {
-      return true;
-    } else {
-      return false;
-    }
+    String pattern = "\\d+";
+    return this.move.matches(pattern);
   }
 
+  /**
+   * Gets integer value of cardIndex input if input is valid.
+   * @return integer representation of this move.
+   */
   public Integer getCardIndex() {
     if (this.isValid()) {
       return Integer.valueOf(this.move);

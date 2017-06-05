@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://course.ccs.neu.edu/cs3500/hw_03_assignment.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=0.8"><title>Assignment 3: Interface Design &amp; Representation Design</title><link rel="stylesheet" type="text/css" href="./Assignment 3_ Interface Design &amp; Representation Design_files/scribble.css" title="default"><link rel="stylesheet" type="text/css" href="./Assignment 3_ Interface Design &amp; Representation Design_files/footnote.css" title="default"><link rel="stylesheet" type="text/css" href="./Assignment 3_ Interface Design &amp; Representation Design_files/screen.css" title="default"><link rel="stylesheet" type="text/css" href="./Assignment 3_ Interface Design &amp; Representation Design_files/manual-racket.css" title="default"><script type="text/javascript" src="./Assignment 3_ Interface Design &amp; Representation Design_files/scribble-common.js"></script><script type="text/javascript" src="./Assignment 3_ Interface Design &amp; Representation Design_files/manual-racket.js"></script><!--[if IE 6]><style type="text/css">.SIEHidden { overflow: hidden; }</style><![endif]--><script src="./Assignment 3_ Interface Design &amp; Representation Design_files/jquery.min.js"></script><script>$.noConflict();</script><script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+    displayMath: [ ["$$","$$"],
+                   ["\\[","\\]"],
+                   ["\\begin{equation}","\\end{equation}"],
+                   ["\\begin{equation*}","\\end{equation*}"] ],
+    processEscapes: true
+  },
+  "HTML-CSS": {
+    availableFonts: [],
+    webFont: "Asana-Math",
+    preferredFont: "Asana-Math",
+    imageFont: null,
+    mtexFontInherit: true
+  }
+});</script><script src="./Assignment 3_ Interface Design &amp; Representation Design_files/MathJax.js" id=""></script><script src="./Assignment 3_ Interface Design &amp; Representation Design_files/codemirror.js"></script><script src="./Assignment 3_ Interface Design &amp; Representation Design_files/runmode.js"></script><script src="./Assignment 3_ Interface Design &amp; Representation Design_files/scheme.js"></script><script src="./Assignment 3_ Interface Design &amp; Representation Design_files/clike.js"></script><link type="text/css" rel="stylesheet" href="./Assignment 3_ Interface Design &amp; Representation Design_files/screen.css"><script type="text/javascript">jQuery(document).ready(function($) {
+  $(function(){
+    $("code.sourceCode").each(function(_, code) {
+      if ($(code).data("lang")) {
+        CodeMirror.runMode($(code).text(), $(code).data("lang"), code);
+        $(code).addClass("cm-s-default");
+      }
+    });
+  });
+});</script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head><body id="scribble-racket-lang-org"><div id="MathJax_Message" style="display: none;"></div><div class="tocset"><div class="tocview"><div class="tocviewlist tocviewlisttopspace"><div class="tocviewtitle"><table cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 1em;"><a href="javascript:void(0);" title="Expand/Collapse" class="tocviewtoggle" onclick="TocviewToggle(this,&quot;tocview_0&quot;);">►</a></td><td></td><td><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html" class="tocviewselflink" data-pltdoc="x"><span class="AssignmentNum">Assignment 3:</span> Interface Design &amp; Representation Design</a></td></tr></tbody></table></div><div class="tocviewsublistonly" style="display: none;" id="tocview_0"><table cellspacing="0" cellpadding="0"><tbody><tr><td align="right">1&nbsp;</td><td><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.Purpose%29" class="tocviewlink" data-pltdoc="x">Purpose</a></td></tr><tr><td align="right">2&nbsp;</td><td><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.The_.Controller_interface%29" class="tocviewlink" data-pltdoc="x">The Controller interface</a></td></tr><tr><td align="right">3&nbsp;</td><td><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.The_.Controller_implementation%29" class="tocviewlink" data-pltdoc="x">The Controller implementation</a></td></tr><tr><td align="right">4&nbsp;</td><td><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.Deliverables%29" class="tocviewlink" data-pltdoc="x">Deliverables</a></td></tr><tr><td align="right">5&nbsp;</td><td><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.Grading_standards%29" class="tocviewlink" data-pltdoc="x">Grading standards</a></td></tr><tr><td align="right">6&nbsp;</td><td><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.Submission%29" class="tocviewlink" data-pltdoc="x">Submission</a></td></tr></tbody></table></div></div></div><div class="tocsub"><table class="tocsublist" cellspacing="0"><tbody><tr><td><span class="tocsublinknumber"></span><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._%29" class="tocsubseclink" data-pltdoc="x"><span class="AssignmentNum">Assignment 3:</span> Interface Design &amp; Representation Design</a></td></tr><tr><td><span class="tocsublinknumber">1<tt>&nbsp;</tt></span><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.Purpose%29" class="tocsubseclink" data-pltdoc="x">Purpose</a></td></tr><tr><td><span class="tocsublinknumber">2<tt>&nbsp;</tt></span><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.The_.Controller_interface%29" class="tocsubseclink" data-pltdoc="x">The Controller interface</a></td></tr><tr><td><span class="tocsublinknumber">3<tt>&nbsp;</tt></span><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.The_.Controller_implementation%29" class="tocsubseclink" data-pltdoc="x">The Controller implementation</a></td></tr><tr><td><span class="tocsublinknumber">4<tt>&nbsp;</tt></span><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.Deliverables%29" class="tocsubseclink" data-pltdoc="x">Deliverables</a></td></tr><tr><td><span class="tocsublinknumber">5<tt>&nbsp;</tt></span><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.Grading_standards%29" class="tocsubseclink" data-pltdoc="x">Grading standards</a></td></tr><tr><td><span class="tocsublinknumber">6<tt>&nbsp;</tt></span><a href="https://course.ccs.neu.edu/cs3500/hw_03_assignment.html#%28part._.Submission%29" class="tocsubseclink" data-pltdoc="x">Submission</a></td></tr></tbody></table></div></div><div class="maincolumn"><div class="main"><div class="versionbox"><span class="versionNoNav">6.8</span></div><h2><a name="(part._)"></a><span class="AssignmentNum">Assignment 3:</span> Interface Design &amp; Representation Design</h2><p></p><h4 class="due">Due: <span style="font-weight: bold">Fri 05/26</span> at
+8:59pm. Self-evaluation due <span style="font-weight: bold">Sat 05/27</span> at 8:59pm</h4><p></p><p></p><p class="git-clone"><code><span class="kw">Starter files: </span><a href="https://course.ccs.neu.edu/cs3500/hw/03/code.zip">code.zip</a></code></p><p></p><h3>1<tt>&nbsp;</tt><a name="(part._.Purpose)"></a>Purpose</h3><p>The goal of this homework is to practice writing a controller. While the model
+in a program represents the state, the controller “runs” the program,
+effectively facilitating through a sequence of operations. You will follow the
+same "interface-implementation" method of creating the controller, and will
+use the model that you created in <a href="https://course.ccs.neu.edu/cs3500/hw_02_assignment.html" data-pltdoc="x"><span class="AssignmentNum">Assignment 2:</span> The Model</a>. Specifically you will write a controller
+that will “run” a game of Freecell, asking the user for input and printing the game
+state to output.</p><p>The only starter file is a type-checking file. You are expected to use your code
+from <a href="https://course.ccs.neu.edu/cs3500/hw_02_assignment.html" data-pltdoc="x">Assignment 2</a> as the starting point for this homework. <span style="font-weight: bold">However, please ensure
+all of your new code is in the <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">cs3500</span>.<span class="cm-variable">hw03</span></code></span> package.  Additionally, your
+code from <a href="https://course.ccs.neu.edu/cs3500/hw_02_assignment.html" data-pltdoc="x">Assignment 2</a> should remain in the <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">cs3500</span>.<span class="cm-variable">hw02</span></code></span> package.</span></p><h3>2<tt>&nbsp;</tt><a name="(part._.The_.Controller_interface)"></a>The Controller interface</h3><p>The interface for the Freecell controller must support the following functionality
+(as an interface <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">IFreecellController</span><span class="cm-operator">&lt;</span><span class="cm-variable">K</span><span class="cm-operator">&gt;</span></code></span>, parameterized over your card type):</p><ol><li><p>A method <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-keyword">void</span> <span class="cm-variable">playGame</span>(<span class="cm-variable">List</span><span class="cm-operator">&lt;</span><span class="cm-variable">K</span><span class="cm-operator">&gt;</span> <span class="cm-variable">deck</span>, <span class="cm-variable">FreecellOperations</span><span class="cm-operator">&lt;</span><span class="cm-variable">K</span><span class="cm-operator">&gt;</span> <span class="cm-variable">model</span>, <span class="cm-keyword">int</span> <span class="cm-variable">numCascades</span>,
+<span class="cm-keyword">int</span> <span class="cm-variable">numOpens</span>, <span class="cm-keyword">boolean</span> <span class="cm-variable">shuffle</span>)</code></span>.  This method should start a new game of Freecell using the provided model,
+number of cascade and open piles and the provided deck. If "shuffle" is set to
+false the deck must be used as-is, else the deck should be shuffled. It should
+throw an <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">IllegalStateException</span></code></span> <span style="font-weight: bold">only</span> if the controller has not
+been initialized properly to receive input and transmit output. The nature of
+input/output will be an implementation detail (see below).</p></li></ol><h3>3<tt>&nbsp;</tt><a name="(part._.The_.Controller_implementation)"></a>The Controller implementation</h3><p>Write a class <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">FreecellController</span></code></span> that implements the
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">IFreecellController</span><span class="cm-operator">&lt;</span><span class="cm-variable">K</span><span class="cm-operator">&gt;</span></code></span> interface above. You will need to:</p><div class="hw"><ol><li><p>Think about which additional fields and types it needs to implement the promised
+functionality.</p></li><li><p>Write a constructor <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">FreecellController</span>(<span class="cm-variable">Readable</span> <span class="cm-variable">rd</span>, <span class="cm-variable">Appendable</span> <span class="cm-variable">ap</span>)</code></span>.
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Readable</span></code></span> and <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Appendable</span></code></span> are two existing interfaces in
+Java that abstract input and output respectively.</p><p>Your controller should accept and store these objects for doing input and
+output. In the game, whenever you need take user input, use the
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Readable</span></code></span> object and whenever you wish to transmit output, use the
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Appendable</span></code></span> object.</p><p>Look at the <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Readable</span></code></span> and <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Appendable</span></code></span> interfaces to see how to
+read from and write to them. Ultimately you must figure out a way to transmit
+a <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">String</span></code></span> to an <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Appendable</span></code></span> and read integers and strings from a
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Readable</span></code></span> object. The <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Scanner</span></code></span> may offer a way out.</p></li><li><p>The <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-keyword">void</span> <span class="cm-variable">playGame</span>(<span class="cm-variable">List</span><span class="cm-operator">&lt;</span><span class="cm-variable">K</span><span class="cm-operator">&gt;</span> <span class="cm-variable">deck</span>, <span class="cm-variable">FreecellOperations</span><span class="cm-operator">&lt;</span><span class="cm-variable">K</span><span class="cm-operator">&gt;</span> <span class="cm-variable">model</span>, <span class="cm-keyword">int</span> <span class="cm-variable">numCascades</span>,
+<span class="cm-keyword">int</span> <span class="cm-variable">numOpens</span>, <span class="cm-keyword">boolean</span> <span class="cm-variable">shuffle</span>)</code></span> method should, obviously, play a game.  To do
+ so, it should ask the provided model to start a game with the provided
+ parameters, and then “run” the game in the following sequence until the game
+ is over:</p><ol start="1.1"><li><p>Transmit game state to the <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Appendable</span></code></span> object
+exactly as the model provides it.</p></li><li><p>If the game is ongoing, wait for user input from the
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Readable</span></code></span> object. A valid user input for a move is a
+sequence of three inputs (separated by spaces or newlines):</p><ol start="1.1"><li><p>The source pile (e.g., <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">"C1"</span></code></span>, as a single
+word). The pile number begins at 1, so that it
+is more human-friendly.</p></li><li><p>The card index, again with the index beginning
+at 1.</p></li><li><p>The destination pile (e.g., <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">"F2"</span></code></span>, as a single
+word). The pile number is again counted from 1.</p></li></ol><p>The controller will parse these inputs and pass the information
+on to the model to make the move.  See below for more detail.</p></li><li><p>If the game has been won, the method should transmit the
+final game state, and a message "Game over." on a new line
+and return.</p></li></ol><p><span style="font-weight: bold">Key points:</span></p><ul><li><p><span style="font-weight: bold">The deck:</span> The deck to be used is the one provided as input, and
+not necessarily the one returned from the model.  (Why is this very
+important?)</p></li><li><p><span style="font-weight: bold">Quitting:</span> If at any point, the input is either the letter <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">'q'</span></code></span> or the
+letter <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">'Q'</span></code></span>, the controller should write the message
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">"Game quit prematurely."</span></code></span> on a separate line to the <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Appendable</span></code></span> object, and return.</p></li><li><p><span style="font-weight: bold">Invalid game parameters:</span> If the game parameters are invalid (e.g., invalid number of
+ cascade/open piles) and the model throws an exception as a result, the controller should
+ transmit a message "Could not start game." and return</p></li><li><p><span style="font-weight: bold">Bad inputs:</span> If an input is unexpected (i.e. something other than <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">'q'</span></code></span> or
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">'Q'</span></code></span> to quit the game; a letter other than <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">'C'</span></code></span>, <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">'F'</span></code></span>,
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-string">'O'</span></code></span> to name a pile; anything that cannot be parsed to a valid number
+after the pile letter; anything that is not a number for the card index) it
+should ask the user to input it again. If the user entered the source pile
+correctly but the card index incorrectly, the controller should ask for only
+the card index again, not the source pile, and likewise for the destination
+pile. If the move was invalid as signalled by the model, the controller should
+transmit a message to the <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Appendable</span></code></span> object "Invalid move. Try again."
+plus any informative message about why the move was invalid (all on one line),
+and resume waiting for valid input.</p></li><li><p><span style="font-weight: bold">Error handling:</span> The controller should throw an
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">IllegalStateException</span></code></span> if either of its <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Readable</span></code></span> and
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Appendable</span></code></span> objects have not been initialized (i.e. if they are
+<span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-atom">null</span></code></span>). It should throw an <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">IllegalArgumentException</span></code></span> if a null deck or model is passed
+to it. <span style="font-weight: bold">The controller should not propagate any exceptions thrown
+by the model to its caller</span>.</p></li></ul></li><li><p>Write sufficient tests to be confident that your code is
+correct. <span style="font-weight: bold">Note:</span> once the model has been tested thoroughly (which
+you hopefully did in <a href="https://course.ccs.neu.edu/cs3500/hw_02_assignment.html" data-pltdoc="x">Assignment 2</a>), all that remains to be tested is
+whether the controller works correctly in all cases.</p></li></ol><p>Be sure to properly document your code with Javadoc as appropriate.
+Method implementations that inherit Javadoc need not provide their own
+unless their contract differs from the inherited documentation.</p></div><h3>4<tt>&nbsp;</tt><a name="(part._.Deliverables)"></a>Deliverables</h3><p></p><p>At a minimum, we need the following files:
+</p><ul><li><p>Your interface (<code>FreecellOperations.java</code>)</p></li><li><p>Implementation of your interface (<code>FreecellModel.java</code>)</p></li><li><p>Your interface (<code>IFreecellController.java</code>)</p></li><li><p>Implementation of your interface (<code>FreecellController.java</code>)</p></li><li><p>Your <span class="sourceCode"><code data-lang="text/x-java" class="sourceCode cm-s-default"><span class="cm-variable">Card</span></code></span> implementation (and interface if you had one)</p></li><li><p>any additional classes you saw fit to write</p></li><li><p>Tests for all your implementations in one or more JUnit test classes.
+You should include at least all your tests from <a href="https://course.ccs.neu.edu/cs3500/hw_02_assignment.html" data-pltdoc="x">Assignment 2</a>, and add to
+them...</p></li></ul><p></p><p>As with <a href="https://course.ccs.neu.edu/cs3500/hw_02_assignment.html" data-pltdoc="x">Assignment 2</a>, please submit a zip containing the <code>src/</code> and
+<code>test/</code> directories with <span style="font-style: italic">no surrounding directories</span>, so that the
+autograder recognizes your package structure.</p><h3>5<tt>&nbsp;</tt><a name="(part._.Grading_standards)"></a>Grading standards</h3><p></p><p>For this assignment, you will be graded on
+</p><ul><li><p>Whether your interfaces specify all necessary operations with appropriate method signatures,</p></li><li><p>whether your code implements the specifications (functional correctness),</p></li><li><p>the clarity of your code,</p></li><li><p>the comprehensiveness of your test coverage, and</p></li><li><p>how well you follow the
+<a href="https://google-styleguide.googlecode.com/svn/trunk/javaguide.html">style guide</a>.</p></li></ul><p></p><h3>6<tt>&nbsp;</tt><a name="(part._.Submission)"></a>Submission</h3><p>Please submit your homework by the above deadline. Then be sure to complete
+your self evaluation by the second deadline.</p><a name="(part._(gentag._6._assignment3))"></a><p class="FootnoteBlock"></p></div></div><div id="contextindicator">&nbsp;</div></body></html>

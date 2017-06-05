@@ -13,17 +13,17 @@ public class PileInput extends AbstractInput {
 
   @Override
   public boolean isValid() {
-    String pattern ="[C|O|F]\\d+";
-    if (this.move.matches(pattern)) {
-      return true;
-    } else {
-      return false;
-    }
+    String pattern = "[C|O|F]\\d+";
+    return this.move.matches(pattern);
   }
 
+  /**
+   * Returns PileType value of this move if it is valid.
+   * @return PileType value of this move.
+   */
   public PileType getPileType() {
     if (this.isValid()) {
-      switch (this.move.substring(0,1)) {
+      switch (this.move.substring(0, 1)) {
         case "C":
           return PileType.CASCADE;
         case "O":
@@ -38,6 +38,10 @@ public class PileInput extends AbstractInput {
     }
   }
 
+  /**
+   * Returns integer value of this move's pile number, if it is valid.
+   * @return integer value of this move.
+   */
   public Integer getPileNumber() {
     if (this.isValid()) {
       return Integer.valueOf(this.move.substring(1));
